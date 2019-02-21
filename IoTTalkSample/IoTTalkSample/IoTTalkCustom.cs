@@ -18,7 +18,7 @@ namespace IoTTalkLib.Library
         }
         public string HostServerIP()
         {
-            string hostServerIP = "https://iottalk.chu.edu.tw";
+            string hostServerIP = "ServerIP";
             return hostServerIP;
         }
         public CustomSetModel custom()
