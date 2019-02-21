@@ -15,13 +15,11 @@ HowTo use IoTalkLibrary with C#
     
     >Install Newtonsoft.Json
   - Download IoTTalkLibrary and Add File to your project
-    >IoTTalkCsmapi.cs
-    
-    >IoTTalkCustom.cs
-    
-    >IoTTalkDAN.cs
-    
+    >IoTTalkCsmapi.cs    
+    >IoTTalkCustom.cs,    
+    >IoTTalkDAN.cs,    
     >IoTTalkModel.cs
+
   - Add Using header
     >using IoTTalkLib.Model;
     
