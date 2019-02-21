@@ -21,8 +21,7 @@ HowTo use IoTalkLibrary with C#
     >IoTTalkModel.cs
 
   - Add Using header
-    >using IoTTalkLib.Model;
-    
+    >using IoTTalkLib.Model;,    
     >using IoTTalkLib.Library;
     
 Finish XD　Enjoy your project!!
