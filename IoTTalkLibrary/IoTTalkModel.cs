@@ -36,8 +36,10 @@ namespace IoTTalkLib.Model
     }
     public class PullDataProcessModel
     {
-        public DateTime? TimeStamp { get; set; }
-        public string unspliteData { get; set; }
+        public DateTime? TimeStamp1 { get; set; }
+        public string unspliteData1 { get; set; }
+        public DateTime? TimeStamp2 { get; set; }
+        public string unspliteData2 { get; set; }
     }
 
     public class CustomSetModel

@@ -5,20 +5,34 @@ using System.Text;
 using System.Threading.Tasks;
 using IoTTalkLib.Library;
 using IoTTalkLib.Model;
+using System.Net.NetworkInformation;
 
 namespace IoTTalkLib.Library
 {
 
     class IoTTalkCustom
     {
+        public string MACAddressAuto()
+        {
+            NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
+
+            List<string> macList = new List<string>();
+            foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
+                if (nic.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                    macList.Add(nic.GetPhysicalAddress().ToString());
+            return macList[0];
+        }
+
         public string DeviceMac()
         {
-            string deviceMac = "80AC842437";
+            string deviceMac = MACAddressAuto();
+            if (deviceMac == null)
+                deviceMac = "80AC842437";
             return deviceMac;
         }
         public string HostServerIP()
         {
-            string hostServerIP = "ServerIP";
+            string hostServerIP = "https://ServerIP";
             return hostServerIP;
         }
         public CustomSetModel custom()
@@ -26,7 +40,7 @@ namespace IoTTalkLib.Library
             CustomSetModel CSM = new CustomSetModel();
             CSM.deviceName = "D1";
             CSM.deviceModel = "MorSensor";
-            CSM.passwordkey = "";
+            CSM.passwordkey = "bedd1388-d136-406a-92b4-f78c35d729dc";
             return CSM;
         }
         public List<string>InputDeviceFeature()

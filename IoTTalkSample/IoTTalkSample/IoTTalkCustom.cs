@@ -40,7 +40,7 @@ namespace IoTTalkLib.Library
             CustomSetModel CSM = new CustomSetModel();
             CSM.deviceName = "D1";
             CSM.deviceModel = "MorSensor";
-            CSM.passwordkey = "";
+            CSM.passwordkey = "bedd1388-d136-406a-92b4-f78c35d729dc";
             return CSM;
         }
         public List<string>InputDeviceFeature()

@@ -20,6 +20,7 @@ namespace IoTTalkSample
             DAN.Device_Model = CSM.deviceModel;
             DAN.Device_Feature = CSM.deviceFeatureList.ToArray();
             DAN.Device_Name = CSM.deviceName;
+            DAN.PASSWORDLEY = CSM.passwordkey;
             InitializeComponent();
         }
         private void button1_Click(object sender, EventArgs e)
@@ -50,9 +51,9 @@ namespace IoTTalkSample
         {
             
             PullDataProcessModel PDPM = DAN.PullDataFromIoTTalk(CSM.deviceFeatureList[0]);
-            textBox3.Text = PDPM.TimeStamp.ToString();
-            textBox4.Text = PDPM.unspliteData;
-            string[] dataVerse = PDPM.unspliteData.Split(',');
+            textBox3.Text = PDPM.TimeStamp1.ToString();
+            textBox4.Text = PDPM.unspliteData1;
+            string[] dataVerse = PDPM.unspliteData1.Split(',');
         }
 
     }

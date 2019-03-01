@@ -12,3 +12,17 @@
 \\Mac\Home\Desktop\VSpython\IoTTalkSample\IoTTalkSample\obj\Debug\IoTTalkSample.csproj.CopyComplete
 \\Mac\Home\Desktop\VSpython\IoTTalkSample\IoTTalkSample\obj\Debug\IoTTalkSample.exe
 \\Mac\Home\Desktop\VSpython\IoTTalkSample\IoTTalkSample\obj\Debug\IoTTalkSample.pdb
+\\Mac\Home\Desktop\github\IoTTalk\IoTTalkSample\IoTTalkSample\bin\Debug\IoTTalkSample.exe.config
+\\Mac\Home\Desktop\github\IoTTalk\IoTTalkSample\IoTTalkSample\bin\Debug\IoTTalkSample.exe
+\\Mac\Home\Desktop\github\IoTTalk\IoTTalkSample\IoTTalkSample\bin\Debug\IoTTalkSample.pdb
+\\Mac\Home\Desktop\github\IoTTalk\IoTTalkSample\IoTTalkSample\bin\Debug\Newtonsoft.Json.dll
+\\Mac\Home\Desktop\github\IoTTalk\IoTTalkSample\IoTTalkSample\bin\Debug\Newtonsoft.Json.pdb
+\\Mac\Home\Desktop\github\IoTTalk\IoTTalkSample\IoTTalkSample\bin\Debug\Newtonsoft.Json.xml
+\\Mac\Home\Desktop\github\IoTTalk\IoTTalkSample\IoTTalkSample\obj\Debug\IoTTalkSample.csprojAssemblyReference.cache
+\\Mac\Home\Desktop\github\IoTTalk\IoTTalkSample\IoTTalkSample\obj\Debug\IoTTalkSample.Form1.resources
+\\Mac\Home\Desktop\github\IoTTalk\IoTTalkSample\IoTTalkSample\obj\Debug\IoTTalkSample.Properties.Resources.resources
+\\Mac\Home\Desktop\github\IoTTalk\IoTTalkSample\IoTTalkSample\obj\Debug\IoTTalkSample.csproj.GenerateResource.cache
+\\Mac\Home\Desktop\github\IoTTalk\IoTTalkSample\IoTTalkSample\obj\Debug\IoTTalkSample.csproj.CoreCompileInputs.cache
+\\Mac\Home\Desktop\github\IoTTalk\IoTTalkSample\IoTTalkSample\obj\Debug\IoTTalkSample.csproj.CopyComplete
+\\Mac\Home\Desktop\github\IoTTalk\IoTTalkSample\IoTTalkSample\obj\Debug\IoTTalkSample.exe
+\\Mac\Home\Desktop\github\IoTTalk\IoTTalkSample\IoTTalkSample\obj\Debug\IoTTalkSample.pdb

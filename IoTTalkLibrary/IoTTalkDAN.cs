@@ -18,11 +18,18 @@ namespace IoTTalkLib.Library
         {
             int statusCode = 0;
             csmapi.ENDPOINT = ENDPOINT;
+            RegesterModel regesterModel = new RegesterModel();
+            if (PASSWORDLEY != null)
+            {
+                regesterModel.d_name = Device_Name;
+                regesterModel.password = PASSWORDLEY;
+                return regesterModel;
+            }
             string deviceProfile = csmapi.CreateProfileJson(Device_Name, Device_Model, Device_Feature);
             string registerInformation = csmapi.Register(Device_MAC, deviceProfile,ref statusCode);
             while(statusCode != 200)
                 registerInformation = csmapi.Register(Device_MAC, deviceProfile, ref statusCode);
-            RegesterModel regesterModel = JsonConvert.DeserializeObject<RegesterModel>(registerInformation);
+            regesterModel = JsonConvert.DeserializeObject<RegesterModel>(registerInformation);
             string passwordkey = regesterModel.password;
             return regesterModel;
         }
@@ -51,9 +58,13 @@ namespace IoTTalkLib.Library
             string feedbackData = csmapi.Pull(Device_MAC, device_Feature, PASSWORDLEY, ref statusCode);
             string[] dataSave = new string[0];
             PullModel PM = JsonConvert.DeserializeObject<PullModel>(feedbackData);
+            PullDataProcessModel PDPM = new PullDataProcessModel();
+            if (PM.samples.Count == 0)
+                return PDPM;
+            int i = 0;
             foreach (var db in PM.samples)
             {
-                int i = 0;
+                
                 foreach (var dc in db)
                 {
                     Array.Resize(ref dataSave, dataSave.Length + 1);
@@ -61,11 +72,31 @@ namespace IoTTalkLib.Library
                     i++;
                 }
             }
-            string result = System.Text.RegularExpressions.Regex.Replace(dataSave[dataSave.Length - 1], "[\r\n  ]", "").Trim(new char[] { '[', ']' });
-            PullDataProcessModel PDPM = new PullDataProcessModel();
-            PDPM.TimeStamp = Convert.ToDateTime(dataSave.FirstOrDefault());
-            PDPM.unspliteData = result;
-            return PDPM;
+            string result,result2;
+            if (PM.samples.Count == 1)
+            {
+                result = System.Text.RegularExpressions.Regex.Replace(dataSave[dataSave.Length - 1], "[\r\n  ]", "").Trim(new char[] { '[', ']' });
+                PDPM.TimeStamp1 = Convert.ToDateTime(dataSave.FirstOrDefault());
+                PDPM.unspliteData1 = result;
+                return PDPM;
+            }
+
+            else if (PM.samples.Count == 2)
+            {
+                result = System.Text.RegularExpressions.Regex.Replace(dataSave[dataSave.Length - 3], "[\r\n  ]", "").Trim(new char[] { '[', ']' });
+                result2 = System.Text.RegularExpressions.Regex.Replace(dataSave[dataSave.Length - 1], "[\r\n  ]", "").Trim(new char[] { '[', ']' });
+                PDPM.TimeStamp1 = Convert.ToDateTime(dataSave.FirstOrDefault());
+                PDPM.unspliteData1 = result;
+                PDPM.TimeStamp2 = Convert.ToDateTime(dataSave[dataSave.Length -2]);
+                PDPM.unspliteData1 = result2;
+                return PDPM;
+            }
+            else
+                return PDPM;
+
+
+
+
         }
 
     }
