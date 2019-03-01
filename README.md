@@ -28,3 +28,9 @@ GitHub Architecture
     >using IoTTalkLib.Library;
     
 Finish XD　Enjoy your project!!
+
+## Some Problem You Need to Know
+  - 請勿重複註冊
+  
+    >重複註冊會將原先的設備替換掉會導致ＰＵＬＬ的資料會變成空的
+    
