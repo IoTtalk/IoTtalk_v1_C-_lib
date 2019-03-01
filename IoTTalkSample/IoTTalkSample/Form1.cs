@@ -54,8 +54,13 @@ namespace IoTTalkSample
             textBox3.Text = PDPM.TimeStamp1.ToString();
             textBox4.Text = PDPM.unspliteData1;
             string[] dataVerse = PDPM.unspliteData1.Split(',');
+
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
        
