@@ -1,0 +1,12 @@
+﻿{
+  "profile": {
+    "d_name": "TestDevice",
+    "dm_name": "Dummy_Device",
+    "u_name": "yb",
+    "is_sim": false,
+    "df_list": [
+      "Dummy_Sensor",
+      "Dummy_Control"
+    ]
+  }
+}

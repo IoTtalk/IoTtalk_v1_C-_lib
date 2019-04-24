@@ -17,7 +17,7 @@ namespace IoTTalkLib.Model
         public List<string> df_list { get; set; }
     }
 
-    public class RegesterModel
+    public class RegisterModel
     {
 
         public string d_name { get; set; }
@@ -41,14 +41,4 @@ namespace IoTTalkLib.Model
         public DateTime? TimeStamp2 { get; set; }
         public string unspliteData2 { get; set; }
     }
-
-    public class CustomSetModel
-    {
-        public string deviceName { get; set; }
-        public string deviceModel { get; set; }
-        public List<string> deviceFeatureList { get; set; }
-        public string passwordkey { get; set; }
-
-    }
-
 }

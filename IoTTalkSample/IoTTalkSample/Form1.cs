@@ -2,41 +2,96 @@
 using IoTTalkLib.Model;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Windows.Forms;
 
 namespace IoTTalkSample
 {
     public partial class Form1 : Form
     {
-        CustomSetModel CSM = new CustomSetModel();
         IoTTalkDAN DAN = new IoTTalkDAN();
         IoTTalkCustom custom = new IoTTalkCustom();
+        IoTTalkCsmapi csmapi = new IoTTalkCsmapi();
+       
         public Form1()
         {
-            CSM = custom.custom();
-            CSM.deviceFeatureList = custom.InputDeviceFeature();
-            DAN.Device_MAC = custom.DeviceMac();
-            DAN.ENDPOINT = custom.HostServerIP();
-            DAN.Device_Model = CSM.deviceModel;
-            DAN.Device_Feature = CSM.deviceFeatureList.ToArray();
-            DAN.Device_Name = CSM.deviceName;
-            DAN.PASSWORDLEY = CSM.passwordkey;
             InitializeComponent();
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
+            custom = DAN.custom;
+        }
+        #region CSMAPI TEST
+        private void CSM_RegBTN_Click(object sender, EventArgs e)
+        {
+            int statusCode = 0;
+            string feedback = csmapi.Register(custom.IoTTalkServer, "3345678", System.IO.File.ReadAllText(@"TestFile\RegisterData.txt"), ref statusCode);
+            if(statusCode == (int)WebExceptionStatus.ProtocolError)
+            {
+                TestCSMAPI_textBox.Text = feedback;
+            }
+            TestCSMAPI_textBox.Text = feedback;
+        }
+        private void CSM_DeRBTN_Click(object sender, EventArgs e)
+        {
+            int statusCode = 0;
+            string feedback = csmapi.Deregister(custom.SSLIoTTalkServer, "3345678", System.IO.File.ReadAllText(@"TestFile\RegisterData.txt"), "00", ref statusCode);
+            if (statusCode == (int)WebExceptionStatus.ProtocolError)
+                TestCSMAPI_textBox.Text = feedback;
+            TestCSMAPI_textBox.Text = feedback;
+        }
+        private void CSM_ChkMACBTN_Click(object sender, EventArgs e)
+        {
+            int statusCode = 0;
+            string feedback = csmapi.ProfileCheck(custom.SSLIoTTalkServer, "3345678", ref statusCode);
+            if (statusCode == (int)WebExceptionStatus.ProtocolError)
+                TestCSMAPI_textBox.Text = feedback;
+            TestCSMAPI_textBox.Text = feedback;
+        }
+        private void CSM_ChkkeyBTN_Click(object sender, EventArgs e)
+        {
+            int statusCode = 0;
+            string feedback = csmapi.PasswordkeyCheck(custom.SSLIoTTalkServer, "3345678", ref statusCode);
+            if (statusCode == (int)WebExceptionStatus.ProtocolError)
+                TestCSMAPI_textBox.Text = feedback;
+            TestCSMAPI_textBox.Text = feedback;
+        }
+        private void CSM_PushBTN_Click(object sender, EventArgs e)
+        {
+            int statusCode = 0;
+            string feedback = csmapi.Push(custom.SSLIoTTalkServer, "3345678", "Dummy_Sensor", System.IO.File.ReadAllText(@"TestFile\pushSample.txt"), "00", ref statusCode);
+            if (statusCode == (int)WebExceptionStatus.ProtocolError)
+                TestCSMAPI_textBox.Text = feedback;
+            TestCSMAPI_textBox.Text = feedback;
+        }
+        private void CSM_PullBTN_Click(object sender, EventArgs e)
+        {
+            int statusCode = 0;
+            string feedback = csmapi.Pull(custom.SSLIoTTalkServer, "3345678", "Dummy_Sensor", "00", ref statusCode);
+            if (statusCode == (int)WebExceptionStatus.ProtocolError)
+                TestCSMAPI_textBox.Text = feedback;
+            TestCSMAPI_textBox.Text = feedback;
+        }
 
-            RegesterModel regesterResult = DAN.RegisterAndRetry();
-            textBox1.Text = regesterResult.d_name;
-            textBox2.Text = regesterResult.password;
-            DAN.PASSWORDLEY = CSM.passwordkey =  regesterResult.password;
-        }
-        private void button2_Click(object sender, EventArgs e)
+
+        #endregion
+
+        #region DAN TEST
+        private void DAN_REGISTER_BTN_Click(object sender, EventArgs e)
         {
-            bool is_deRegister = DAN.DeRegisterCancel();
-            textBox2.Text = is_deRegister.ToString();
+            RegisterModel registerModel = DAN.REGISTERDEVICE();
+            TestDAN_textbox.Text = "device : " + registerModel.d_name +"\r\n"+ "password : " + registerModel.password;
         }
-        private void button3_Click(object sender, EventArgs e)
+
+        private void DAN_DELETE_BTN_Click(object sender, EventArgs e)
+        {
+            string deletefeedback = DAN.DELETEDEVICE();
+            TestDAN_textbox.Text = deletefeedback;
+        }
+
+        #endregion
+
+        private void DAN_PUSH_BTN_Click(object sender, EventArgs e)
         {
             PushModel PM = new PushModel();
             List<object> list = new List<object>();
@@ -44,21 +99,27 @@ namespace IoTTalkSample
             list.Add(1234);
             list.Add(5.7F);
             PM.data = list;
-            DAN.PushDataToIoTTalk(CSM.deviceFeatureList[0], PM);
+            DAN.PUSH(custom.Device_Feature[0], PM);
+            TestDAN_textbox.Text = "D_name : " + custom.Device_Name + "D_feature" + custom.Device_Feature[0];
+            string datashow = "";
+            foreach (var data in PM.data)
+            {
+                datashow += "\r\n"+ data.ToString() ;
+            }
+            TestDAN_textbox.Text += datashow;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void DAN_PULL_BTN_Click(object sender, EventArgs e)
         {
-            
-            PullDataProcessModel PDPM = DAN.PullDataFromIoTTalk(CSM.deviceFeatureList[0]);
-            textBox3.Text = PDPM.TimeStamp1.ToString();
-            textBox4.Text = PDPM.unspliteData1;
-            string[] dataVerse = PDPM.unspliteData1.Split(',');
 
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
+            PullDataProcessModel PDPM = DAN.PULL(custom.Device_Feature[0]);
+            TestDAN_textbox.Text = "Timestamp: " + PDPM.TimeStamp1 + "\r\n" + "unspliteData : " + PDPM.unspliteData1;
+            string[] dataVerse = new string[0];
+            if (PDPM.unspliteData1 != null)
+            {
+                Array.Resize(ref dataVerse, PDPM.unspliteData1.Split(',').Length);
+                dataVerse = PDPM.unspliteData1.Split(',');
+            }
 
         }
     }
