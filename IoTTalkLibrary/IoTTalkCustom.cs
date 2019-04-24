@@ -10,8 +10,8 @@ namespace IoTTalkLib.Library
     class IoTTalkCustom
     {
         public string Mac_Addr = "";
-        public string SSLIoTTalkServer = "https://iottalk.chu.edu.tw"; //For SSL/TLS/HTTPS
-        public string IoTTalkServer = "http://iottalk.chu.edu.tw"+":9999"; //For SSL/TLS/HTTPS
+        public string SSLIoTTalkServer = "https://iottalkserver"; //For SSL/TLS/HTTPS
+        public string IoTTalkServer = "http://iottalkserver"+":9999"; //For SSL/TLS/HTTPS
         public string Device_Name = "TestDevice";
         public string Device_Model = "Dummy_Device";
         public List<string> Device_Feature;
