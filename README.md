@@ -29,10 +29,8 @@ GitHub Architecture
     
 Finish XD　Enjoy your project!!
 
-## Some Problem You Need to Know
-  - 請勿重複註冊
-  
-    >重複註冊會將原先的設備替換掉會導致ＰＵＬＬ的資料會變成空的,
-    
-    >Library 並未寫try catch 是為了測試方便，若完成專案 建議寫上例外排除
+#IoTTalk C#
+修正版本追蹤
+V1 建立版本
+V2 FIX csmapi DAN connect
     
