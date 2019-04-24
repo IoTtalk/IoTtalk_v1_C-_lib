@@ -31,6 +31,6 @@ Finish XD　Enjoy your project!!
 
 #IoTTalk C#
 修正版本追蹤
-V1 建立版本
-V2 FIX csmapi DAN connect
+  - V1 建立版本
+  - V2 FIX csmapi DAN connect
     
